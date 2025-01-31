@@ -401,10 +401,10 @@ class _CopyFile(object):
                     if not platform_utils.isdir(dest_dir):
                         os.makedirs(dest_dir)
                 shutil.copy(src, dest)
-                # Make the file read-only.
-                mode = os.stat(dest)[stat.ST_MODE]
-                mode = mode & ~(stat.S_IWUSR | stat.S_IWGRP | stat.S_IWOTH)
-                os.chmod(dest, mode)
+                # Don't mess with the file's attributes.
+                # mode = os.stat(dest)[stat.ST_MODE]
+                # mode = mode & ~(stat.S_IWUSR | stat.S_IWGRP | stat.S_IWOTH)
+                # os.chmod(dest, mode)
             except IOError:
                 _error("Cannot copy file %s to %s", src, dest)
 
